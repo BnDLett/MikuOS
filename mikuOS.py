@@ -22,10 +22,11 @@ elif 'false' in open('users.json', 'r').read() and loggedin == False:
     lbl = Label(window, text="Welcome to mikuOS!\nPlease enter your password to continue. ")
     lbl.grid(column=0, row=0)
     def clicked():
-        loggedin = True
-        lbl.destroy()
-        txt.destroy()
-        btn.destroy()
+        if txt.get() == json.load(open('users.json', 'r'))['users']['password']:
+            loggedin = True
+            lbl.destroy()
+            txt.destroy()
+            btn.destroy()
     txt = Entry(window,width=15)
     txt.grid(column=1, row=0)
     btn = Button(window, text='enter', command=clicked)
